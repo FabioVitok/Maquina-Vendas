@@ -18,6 +18,7 @@ public class EntranceActivity extends AppCompatActivity {
     // Vai servir para manipular o Button
 
     Button buttonToSignUp;
+    Button buttonToLogin;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +36,30 @@ public class EntranceActivity extends AppCompatActivity {
         this.buttonToSignUp = findViewById(R.id.buttonToSignUp);
         // Aplicar o eventlistner
         this.buttonToSignUp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //Toast.makeText(LoginActivity.this, "Cliquei no btn Login", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(EntranceActivity.this, SignupActivity.class);
+                startActivity(intent);
+            }
+        });
+        // Aqui vamos colocar o eventlistener no btn login
+        // 1. Apanhar o componente no xml
+        this.buttonToSignUp = findViewById(R.id.buttonToSignUp);
+        // Aplicar o eventlistner
+        this.buttonToSignUp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //Toast.makeText(LoginActivity.this, "Cliquei no btn Login", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(EntranceActivity.this, SignupActivity.class);
+                startActivity(intent);
+            }
+        });
+        // Aqui vamos colocar o eventlistener no btn login
+        // 1. Apanhar o componente no xml
+        this.buttonToLogin= findViewById(R.id.buttonToLogin);
+        // Aplicar o eventlistner
+        this.buttonToLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //Toast.makeText(LoginActivity.this, "Cliquei no btn Login", Toast.LENGTH_SHORT).show();

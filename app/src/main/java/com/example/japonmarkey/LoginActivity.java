@@ -25,10 +25,9 @@ public class LoginActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-        // Aqui vamos colocar o eventlistener no btn login
-        // 1. Apanhar o componente no xml
+
         this.buttonLogin= findViewById(R.id.buttonLogin);
-        // Aplicar o eventlistner
+
         this.buttonLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

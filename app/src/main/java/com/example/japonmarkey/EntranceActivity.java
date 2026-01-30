@@ -12,13 +12,22 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.example.japonmarkey.models.Bebida;
+import com.example.japonmarkey.models.Doce;
+import com.example.japonmarkey.models.MaquinaVendas;
+import com.example.japonmarkey.models.Produto;
+import com.example.japonmarkey.models.Snack;
+import com.example.japonmarkey.models.Utilizador;
+
+import java.util.ArrayList;
+
 public class EntranceActivity extends AppCompatActivity {
 
     // Definir uma var. de istância do tipo button
     // Vai servir para manipular o Button
 
-    Button buttonToSignUp;
-    Button buttonToLogin;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,11 +40,12 @@ public class EntranceActivity extends AppCompatActivity {
             return insets;
         });
 
-        // Aqui vamos colocar o eventlistener no btn login
-        // 1. Apanhar o componente no xml
-        this.buttonToSignUp = findViewById(R.id.buttonToSignUp);
-        // Aplicar o eventlistner
-        this.buttonToSignUp.setOnClickListener(new View.OnClickListener() {
+
+
+        // Atribui a variavel local buttonToSignUp ao botão de ToSignUp presente no xml
+        Button buttonToSignUp = findViewById(R.id.buttonToSignUp);
+        // Aplica o eventlistner que faz a aplicação trocar de activity
+        buttonToSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //Toast.makeText(LoginActivity.this, "Cliquei no btn Login", Toast.LENGTH_SHORT).show();
@@ -43,23 +53,11 @@ public class EntranceActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        // Aqui vamos colocar o eventlistener no btn login
-        // 1. Apanhar o componente no xml
-        this.buttonToSignUp = findViewById(R.id.buttonToSignUp);
-        // Aplicar o eventlistner
-        this.buttonToSignUp.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //Toast.makeText(LoginActivity.this, "Cliquei no btn Login", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(EntranceActivity.this, SignupActivity.class);
-                startActivity(intent);
-            }
-        });
-        // Aqui vamos colocar o eventlistener no btn login
-        // 1. Apanhar o componente no xml
-        this.buttonToLogin= findViewById(R.id.buttonToLogin);
-        // Aplicar o eventlistner
-        this.buttonToLogin.setOnClickListener(new View.OnClickListener() {
+
+        // Atribui a variavel local buttonToLogin ao botão de ToLogin presente no xml
+        Button buttonToLogin= findViewById(R.id.buttonToLogin);
+        // Aplica o eventlistner que faz a aplicação trocar de activity
+        buttonToLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //Toast.makeText(LoginActivity.this, "Cliquei no btn Login", Toast.LENGTH_SHORT).show();
@@ -68,4 +66,5 @@ public class EntranceActivity extends AppCompatActivity {
             }
         });
     }
+
 }

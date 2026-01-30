@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:padding="24dp"
+    android:background="@color/darkTeal">
+
+
+    <TextView
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Escolher Quantidade"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:layout_marginBottom="16dp"
+        android:textColor="@color/white"/>
+
+
+    <TextView
+        android:id="@+id/textNomeProduto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Produto: "
+        android:textSize="16sp"
+        android:layout_marginBottom="8dp"
+        android:textColor="@color/white"/>
+
+
+    <TextView
+        android:id="@+id/textPrecoProduto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Preço: "
+        android:textSize="16sp"
+        android:layout_marginBottom="8dp"
+        android:textColor="@color/white"/>
+
+
+    <TextView
+        android:id="@+id/textStockProduto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Stock: "
+        android:textSize="16sp"
+        android:layout_marginBottom="24dp"
+        android:textColor="@color/white"/>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_marginBottom="24dp">
+
+        <Button
+            android:id="@+id/btnMenos"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:text="-"
+            android:textSize="18sp"
+            android:textColor="@color/white"
+            android:background="@drawable/pink_button"
+            app:backgroundTint="@null"
+            />
+
+        <TextView
+            android:id="@+id/textQuantidade"
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:text="1"
+            android:textSize="24sp"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp" />
+
+        <Button
+            android:id="@+id/btnMais"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:text="+"
+            android:textSize="18sp"
+            android:textColor="@color/white"
+            android:background="@drawable/pink_button"
+            app:backgroundTint="@null"/>
+
+    </LinearLayout>
+
+
+    <Button
+        android:id="@+id/btnComprar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="COMPRAR"
+        android:textColor="@color/white"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/pink_button"
+        app:backgroundTint="@null"/>
+
+    <Button
+        android:id="@+id/btnCancelar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="CANCELAR"
+        android:textColor="@color/white"
+        android:background="@drawable/pink_button"
+        app:backgroundTint="@null"/>
+
+</LinearLayout>

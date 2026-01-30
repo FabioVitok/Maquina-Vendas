@@ -33,15 +33,15 @@
 
             />
         <EditText
-            android:id="@+id/editTextEmailAdress"
+            android:id="@+id/editTextUsername"
             android:layout_width="match_parent"
             android:layout_height="55dp"
             android:layout_marginTop="12dp"
             android:paddingStart="20dp"
-            android:hint="Email"
+            android:hint="Username"
             android:textColorHint="@color/black"
             android:ems="10"
-            android:inputType="textEmailAddress"
+            android:inputType="textPersonName"
             android:background="@drawable/white_background_edit_text"
             />
 

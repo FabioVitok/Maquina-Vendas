@@ -10,31 +10,27 @@
 
 
     <LinearLayout
+        android:id="@+id/layoutTop"
         android:layout_width="match_parent"
         android:layout_height="65dp"
+        android:background="@color/darkTeal"
         android:orientation="horizontal"
-        android:background="@color/darkTeal">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
 
-
-        <ImageButton
-            android:id="@+id/backButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:layout_gravity="center"
-            app:srcCompat="@drawable/arrow_back_24"
-            android:background="@color/darkTeal"/>
 
         <ImageView
-            android:id="@+id/imageView"
+            android:id="@+id/japon_logo"
             android:layout_width="25dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_weight="1"
-            app:srcCompat="@drawable/japon_logo" />
+            app:srcCompat="@drawable/japon_logo"
+            android:layout_marginStart="70dp"/>
 
         <ImageView
-            android:id="@+id/imageView2"
+            android:id="@+id/japon_title"
             android:layout_width="137dp"
             android:layout_height="62dp"
             android:layout_gravity="center"
@@ -47,7 +43,91 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_weight="1"
-            app:srcCompat="@drawable/account_circle_24"
-            android:background="@color/darkTeal"/>
+            android:background="@color/darkTeal"
+            app:srcCompat="@drawable/account_circle_24" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/layoutProduto"
+        android:layout_width="match_parent"
+        android:layout_height="664dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/layoutTop">
+
+
+        <TextView
+            android:id="@+id/nomeProduto"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="70dp"
+            android:textColor="@color/white"
+            android:textSize="20dp"
+            android:text="Nome do Produto" />
+
+        <ImageView
+            android:id="@+id/imagemProduto"
+            android:layout_width="300dp"
+            android:layout_height="300dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="5dp"
+
+            app:srcCompat="@drawable/floral_background" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="center">
+
+        <TextView
+            android:id="@+id/precoProduto"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Preço do produto"
+            android:textSize="15dp"
+            android:textColor="@color/white"
+            android:layout_marginEnd="10dp"/>
+
+            <TextView
+                android:id="@+id/stockProduto"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="stock do produto"
+                android:textSize="15dp"
+                android:textColor="@color/white"
+                android:layout_marginStart="10dp"/>
+    </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center">
+            <ImageButton
+                android:id="@+id/imageButtonBackward"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/teal"
+                app:srcCompat="@drawable/outline_chevron_backward_50" />
+
+            <ImageButton
+                android:id="@+id/imageButtonBuy"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity=""
+                android:background="@color/teal"
+                app:srcCompat="@drawable/outline_adjust_24" />
+
+            <ImageButton
+                android:id="@+id/imageButtonForward"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/teal"
+                app:srcCompat="@drawable/outline_chevron_forward_50" />
+        </LinearLayout>
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

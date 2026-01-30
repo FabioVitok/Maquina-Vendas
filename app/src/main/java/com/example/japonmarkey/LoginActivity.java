@@ -13,7 +13,7 @@ import androidx.core.view.WindowInsetsCompat;
 
 public class LoginActivity extends AppCompatActivity {
 
-    Button buttonLogin;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,12 +26,12 @@ public class LoginActivity extends AppCompatActivity {
             return insets;
         });
 
-        this.buttonLogin= findViewById(R.id.buttonLogin);
-
-        this.buttonLogin.setOnClickListener(new View.OnClickListener() {
+        // Atribui a variavel Local buttonlogin ao botão de login presente no xml
+        Button buttonLogin= findViewById(R.id.buttonLogin);
+        // Aplica o eventlistner que faz a aplicação trocar de activity
+        buttonLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Toast.makeText(LoginActivity.this, "Cliquei no btn Login", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                 startActivity(intent);
             }

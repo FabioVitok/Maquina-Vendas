@@ -1,6 +1,8 @@
 package com.example.japonmarkey.models;
 
-public class Utilizador {
+import java.io.Serializable;
+
+public class Utilizador implements Serializable {
     public String username;
     public String email;
     public String password;

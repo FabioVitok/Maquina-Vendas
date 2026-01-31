@@ -23,12 +23,6 @@ import java.util.ArrayList;
 
 public class EntranceActivity extends AppCompatActivity {
 
-    // Definir uma var. de istância do tipo button
-    // Vai servir para manipular o Button
-
-
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,7 +33,6 @@ public class EntranceActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-
 
 
         // Atribui a variavel local buttonToSignUp ao botão de ToSignUp presente no xml

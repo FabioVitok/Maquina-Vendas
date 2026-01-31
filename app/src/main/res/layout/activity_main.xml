@@ -129,5 +129,15 @@
                 android:background="@color/teal"
                 app:srcCompat="@drawable/outline_chevron_forward_50" />
         </LinearLayout>
+        <Button
+            android:id="@+id/buttonReStock"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
+            android:text="Solicitar ReStock"
+            android:textStyle="bold"
+            android:layout_gravity="center"
+            android:background="@drawable/pink_button"
+            app:backgroundTint="@null"/>
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -58,9 +58,10 @@ public class CompraBottomSheet extends BottomSheetDialogFragment {
     public View onCreateView(@NonNull LayoutInflater inflater,
                              @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
+        // Associa a classe ao respetivo layout
         View view = inflater.inflate(R.layout.bottom_sheet_compra, container, false);
 
-        //Verifica se os foram passados dados no bundle
+        // Verifica se os foram passados dados no bundle
         if (getArguments() != null) {
 
             //Atribui os dados do budnle a variaveis locais
@@ -69,7 +70,7 @@ public class CompraBottomSheet extends BottomSheetDialogFragment {
             int stock = getArguments().getInt("STOCK_PRODUTO");
             this.stockDisponivel = stock;
 
-            // Associa as variaveis locais do metodo aos elementos do xml
+            // Inicialização das Views
             TextView textNomeProduto = view.findViewById(R.id.textNomeProduto);
             TextView textPrecoProduto = view.findViewById(R.id.textPrecoProduto);
             TextView textStockProduto = view.findViewById(R.id.textStockProduto);

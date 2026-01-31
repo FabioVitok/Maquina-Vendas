@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:padding="24dp"
+    android:background="@color/darkTeal">
+
+
+    <TextView
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Carregar Saldo"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:layout_marginBottom="16dp"
+        android:textColor="@color/white"/>
+
+    <EditText
+        android:id="@+id/editValor"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Ex: 12.50"
+        android:inputType="numberDecimal"
+        android:textSize="18sp"
+        android:padding="12dp"
+        android:background="@drawable/white_background_edit_text"
+        android:layout_marginBottom="16dp" />
+
+
+    <Button
+        android:id="@+id/btnCarregar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="CARREGAR"
+        android:textColor="@color/white"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/pink_button"
+        app:backgroundTint="@null"/>
+
+    <Button
+        android:id="@+id/btnCancelar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="CANCELAR"
+        android:textColor="@color/white"
+        android:background="@drawable/pink_button"
+        app:backgroundTint="@null"/>
+
+</LinearLayout>

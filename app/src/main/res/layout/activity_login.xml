@@ -71,14 +71,16 @@
             android:text="Log in"
             app:backgroundTint="@null"/>
 
-        <TextView
-            android:id="@+id/textView3"
+        <Button
+            android:id="@+id/buttonSignup"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:layout_gravity="center"
             android:textColor="@color/white"
-            android:text="Não tem conta? Registe-se" />
+            android:background="@color/teal"
+            android:text="Não tem conta? Registe-se"
+            app:backgroundTint="@null"/>
 
 
     </LinearLayout>

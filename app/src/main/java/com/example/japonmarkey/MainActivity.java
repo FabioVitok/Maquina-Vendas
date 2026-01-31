@@ -1,8 +1,10 @@
 package com.example.japonmarkey;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -28,10 +30,9 @@ public class MainActivity extends AppCompatActivity {
 
     // Declaração das Variaveis de instância para a classe
     private int produtoAtualIndex = 0;
+    private double updateSaldo;
     private MaquinaVendas mq1;
     private final int primeiroElemento = 0;
-
-
 
 
     // Metodo onCreate
@@ -51,20 +52,21 @@ public class MainActivity extends AppCompatActivity {
         // Chama o metodo MostrarProduto que mostra as infromações do produto no ecrã
         MostrarProdutos();
 
-        // Associar as variaveis locais aos respetivos elementos dos xml
+
+
+        // Inicialização das Views
         ImageButton userButton = findViewById(R.id.userButton);
         ImageButton imageButtonBuy = findViewById(R.id.imageButtonBuy);
         ImageButton imageButtonBackward = findViewById(R.id.imageButtonBackward);
         ImageButton imageButtonForward = findViewById(R.id.imageButtonForward);
+        Button buttonReStock = findViewById(R.id.buttonReStock);
 
         // setOnClickListener do botão user que troca de activity do main para a user
         userButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, UserActivity.class);
-                startActivity(intent);
-                // Chama o metodo PassUserInfo para passar as informações do user para a UserActivity
-                PassUserInfo();
+                // Chama o metodo PassUserInfo para passar as informações do user para a UserActivity e troca de activity
+                PassUser();
             }
         });
 
@@ -81,99 +83,144 @@ public class MainActivity extends AppCompatActivity {
         imageButtonBackward.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Criar a variavel local ultimoProduto que equivale ao index do ultimo produto do arrayList
-                int ultimoProduto = mq1.produtos.size()-1;
-
-                // Verifica se o produtoAtualIndex está no primeiro elemento do arrayList
-                if(produtoAtualIndex == primeiroElemento){
-                    // Se estiver, em vez de andar para traz ele vai ser levado para o fim do arrayList
-                    produtoAtualIndex = ultimoProduto;
-                }
-                else{
-                    // Se ele não estiver, ele anda um produto para tras
-                    produtoAtualIndex= produtoAtualIndex-1;
-                }
-                // Atualiza o Produto que está a ser Mostrado
-                MostrarProdutos();
-                }
-
-
+               anterior();
+            }
         });
 
         // setOnClickListener do botão Proximo
         imageButtonForward.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Criar a variavel local ultimoProduto que equivale ao index do ultimo produto do arrayList
-                int ultimoProduto = mq1.produtos.size()-1;
+           proximo();
+            }
+        });
 
-                // Verifica se o produtoAtualIndex está no ultimo elemento o arrayList
-                if(produtoAtualIndex == ultimoProduto){
-                    // Se estiver, em vez de andar prà frente ele vai ser levado para o inicio do arrayList
-                    produtoAtualIndex = primeiroElemento;
-                }
-                else {
-                    // Se ele não estiver, ele anda um produto prà frente
-                    produtoAtualIndex = produtoAtualIndex + 1;
-                }
-                // Atualiza o Produto que está a ser Mostrado
-                MostrarProdutos();
+        // setOnClickListener do botão ReStock
+        buttonReStock.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Chama o metodo ReStock produto que dá restock até ao maximo stock do produto (6)
+                ReStockProduto();
             }
         });
     }
     // O OnCreat é fechado
 
+    // Criação dos métodos Utilizados nesta Classe
 
-    // Criação dos métodos Utilizados nesta Class
-    public void RealizarCompra(){
+    public void anterior() {
+        // Criar a variavel local ultimoProduto que equivale ao index do ultimo produto do arrayList
+        int ultimoProduto = mq1.produtos.size() - 1;
 
-            // Cria a janela para o BottomSheet
-            CompraBottomSheet bottomSheet = new CompraBottomSheet();
+        // Verifica se o produtoAtualIndex está no primeiro elemento do arrayList
+        if (produtoAtualIndex == primeiroElemento) {
+            // Se estiver, em vez de andar para traz ele vai ser levado para o fim do arrayList
+            produtoAtualIndex = ultimoProduto;
+        } else {
+            // Se ele não estiver, ele anda um produto para tras
+            produtoAtualIndex = produtoAtualIndex - 1;
+        }
+        // Atualiza o Produto que está a ser Mostrado
+        MostrarProdutos();
+    }
+
+    public void proximo(){
+        // Criar a variavel local ultimoProduto que equivale ao index do ultimo produto do arrayList
+        int ultimoProduto = mq1.produtos.size() - 1;
+
+        // Verifica se o produtoAtualIndex está no ultimo elemento do arrayList
+        if (produtoAtualIndex == ultimoProduto) {
+            // Se estiver, em vez de andar prà frente ele vai ser levado para inicio do arrayList
+            produtoAtualIndex = primeiroElemento;
+        } else {
+            // Se ele não estiver, ele anda um produto prà frente
+            produtoAtualIndex = produtoAtualIndex + 1;
+        }
+        // Atualiza o Produto que está a ser Mostrado
+        MostrarProdutos();
+    }
+
+    public void RealizarCompra() {
+
+        // Cria a janela para o BottomSheet
+        CompraBottomSheet bottomSheet = new CompraBottomSheet();
 
         //Cria a variavel local produto que equivale ao produto atualmente no ecrã
         Produto produto = mq1.produtos.get(produtoAtualIndex);
 
-        // MUDANÇA AQUI: Use newInstance em vez de new CompraBottomSheet()
+        // Passa os dados dos produtos
         bottomSheet = CompraBottomSheet.newInstance(
                 produto.getNome(),    // Passa o nome
                 produto.getPreco(),  // Passa o preço
                 produto.getStock()    // Passa o Stock
         );
 
-            // Cria um listener para quando o utilizador escolher uma quantidade
-            bottomSheet.setOnCompraListener(new CompraBottomSheet.OnCompraListener() {
-                @Override
-                public void onCompraRealizada(int quantidadeRecebida) {
-                    // Cria a String de resultado da compra enquanto realiza a compra do produto mostrado atualmente no ecrã e com a quantidade recebida do bottomsheet
-                    String resultado = mq1.comprar(mq1.produtos.get(produtoAtualIndex),quantidadeRecebida, MainActivity.this);
-                    // Cria um Toast que mostra a string do resultado da compra
-                    Toast.makeText(MainActivity.this, resultado, Toast.LENGTH_SHORT).show();
-                    // Atualiza as informações do produto (Necessário pela mudança no stock)
-                    MostrarProdutos();
-                }
-            });
-            // Abre o BottomSheet
-            bottomSheet.show(getSupportFragmentManager(), "CompraBottomSheet");
+        // Cria um listener para quando o utilizador escolher uma quantidade
+        bottomSheet.setOnCompraListener(new CompraBottomSheet.OnCompraListener() {
+            @Override
+            public void onCompraRealizada(int quantidadeRecebida) {
+                // Cria a String de resultado da compra enquanto realiza a compra do produto mostrado atualmente no ecrã e com a quantidade recebida do bottomsheet
+                String resultado = mq1.comprar(mq1.produtos.get(produtoAtualIndex), quantidadeRecebida, MainActivity.this);
+                // Cria um Toast que mostra a string do resultado da compra
+                Toast.makeText(MainActivity.this, resultado, Toast.LENGTH_SHORT).show();
+                // Atualiza as informações do produto (Necessário pela mudança no stock)
+                MostrarProdutos();
+            }
+        });
+        // Abre o BottomSheet
+        bottomSheet.show(getSupportFragmentManager(), "CompraBottomSheet");
+    }
+
+    // Metodo para dar restock a um produto
+    public void ReStockProduto(){
+        // Cria a variavel local maximo stock para defenir o maximo de stock que um produto pode ter
+        int maxStock = 6;
+
+        // Cria a variavel local produto para acessar ao produto atualmente mostrado no ecrã
+        Produto produto = mq1.produtos.get(produtoAtualIndex);
+
+        // Variaveis locais para defenir o stock atual do produto e o restock necessario para chegar ao maximo de stock
+        int stockatual = produto.getStock();
+        int stockPretendido = maxStock - stockatual;
+
+        // Verifica se o produto já nao tem o maximo do stock
+        if(stockatual != maxStock) {
+            // Dá restock ao produto
+            produto.reStock(stockPretendido);
+            // Atualiza as informaçõe do produto no ecrã
+            MostrarProdutos();
+        }
     }
 
 
-        // Metodo Para inicializar a Maquina de vendas
-        public void IncializarMaquina() {
+    // Metodo Para inicializar a Maquina de vendas
+    public void IncializarMaquina() {
         // Cria o utilizador
         Utilizador user1 = new Utilizador("Fábio", "fabio.vitoriano@icloud.com", "passwow");
-        user1.carregarSaldo(100.50);
         // Cria o arraylist de produtos disponiveis
         ArrayList<Produto> produtos = new ArrayList<Produto>();
         // Cria a maquina de vendas e associa o utilizador e o arraylist
         this.mq1 = new MaquinaVendas("Loures", user1, produtos);
 
         // Adiciona cada produto á maquina de vendas
-        Doce dc1 = new Doce("Mochi", 3.60, 6, "mochi_drawable", true);
+        Doce dc1 = new Doce("Mochi de lichia", 3.60, 6, "mochi_drawable", true);
         this.mq1.produtos.add(dc1);
-        Snack sn1 = new Snack("Noodles", 4.60, 4, "C:/Users/Pictures/noodles", false);
+        Snack sn1 = new Snack("Jojo's Wafer", 4.60, 6, "jojowafer_drawable", true);
         this.mq1.produtos.add(sn1);
-        Bebida bb1 = new Bebida("Monster Morango", 1.60, 3, "C:/Users/Pictures/monster_morango", true);
+        Bebida bb1 = new Bebida("Soda do Goku", 2.00, 6, "gokusoda_drawable", false);
         this.mq1.produtos.add(bb1);
+        Doce dc2 = new Doce("Pocky de Morango", 4.60, 6, "pocky_drawable", false);
+        this.mq1.produtos.add(dc2);
+        Snack sn2 = new Snack("Hello Panda Creme de Morango", 3.20, 6, "hellopanda_drawable", true);
+        this.mq1.produtos.add(sn2);
+        Bebida bb2 = new Bebida("Monster de Morango", 1.60, 6, "monstermorango_drawable", true);
+        this.mq1.produtos.add(bb2);
+        Doce dc3 = new Doce("Oreos de Morango", 6.60, 6, "strawberryoreo_drawable", false);
+        this.mq1.produtos.add(dc3);
+        Snack sn3 = new Snack("Instant Noodles Naruto", 3.40, 6, "narutonoodles_drawable", false);
+        this.mq1.produtos.add(sn3);
+        Bebida bb3 = new Bebida("Pop Soda de Morango", 1.50, 6, "strawberrysoda_drawable", true);
+        this.mq1.produtos.add(bb3);
     }
 
     // Metodo Para Mostrar as informações do produto no ecrã
@@ -221,18 +268,31 @@ public class MainActivity extends AppCompatActivity {
     }
 
     // Metodo para passar a informação do user para a userActivity
-    private void PassUserInfo() {
+
+    private void PassUser() {
         Intent intent = new Intent(MainActivity.this, UserActivity.class);
 
         // Verifica se há dados do utilizador para passar antes de os enviar
         if (mq1 != null && mq1.user != null) {
+            Utilizador User = mq1.user;
             // Adiciona o nome do utilizador e o saldo aos dados a serem enviados
-            intent.putExtra("NOME", this.mq1.user.getUsername());
-            intent.putExtra("SALDO", this.mq1.user.getSaldo());
+            intent.putExtra("USER_OBJECT", User);
         }
 
         // Inicia a UserActivity e leva as infromaçoes do user no intent
-        startActivity(intent);
+        startActivityForResult(intent, 100);
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 100 && resultCode == Activity.RESULT_OK) {
+            // Recebe o novo saldo
+            if (data != null) {
+                updateSaldo = data.getDoubleExtra("NOVO_SALDO", 0);
+                mq1.user.setSaldo(updateSaldo);
+            }
+
+        }
+    }
 }

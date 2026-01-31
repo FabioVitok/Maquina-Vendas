@@ -17,9 +17,4 @@ public class ImageHelper {
         );
     }
 
-    // Metodo adicional para veririficar se a imagem existe
-    public static boolean hasDrawableResource(Context context, String resourceName) {
-        // Se o ID não for 0, a imagem existe
-        return getDrawableResourceId(context, resourceName) != 0;
-    }
 }

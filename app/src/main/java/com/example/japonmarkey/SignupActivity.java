@@ -24,13 +24,25 @@ public class SignupActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-        // Atribui a variavel local buttonSignup ao botão de Signup presente no xml
+
+        // Inicialização das Views
         Button buttonSignup= findViewById(R.id.buttonSignup);
+        Button buttonLogin= findViewById(R.id.buttonLogin);
+
         // Aplica o eventlistner que faz a aplicação trocar de activity
         buttonSignup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(SignupActivity.this, MainActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        // Aplica o eventlistner que faz a aplicação trocar de activity
+        buttonLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(SignupActivity.this, LoginActivity.class);
                 startActivity(intent);
             }
         });

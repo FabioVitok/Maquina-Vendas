@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">JaponMarket</string>
     <string name="noSaldo">Não foi possivel efetuar a compra pois o seu saldo não é suficiente.</string>
-    <string name="noStock">Não foi possivel efetuar a compra pois o seu Stock não é suficiente.</string>
+    <string name="noStock">Não foi possivel efetuar a compra pois o Stock não é suficiente.</string>
     <string name="compraSucesso">A compra foi efetuada com sucesso.</string>
 
 </resources>

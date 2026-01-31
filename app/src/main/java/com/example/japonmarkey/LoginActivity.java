@@ -26,13 +26,24 @@ public class LoginActivity extends AppCompatActivity {
             return insets;
         });
 
-        // Atribui a variavel Local buttonlogin ao botão de login presente no xml
-        Button buttonLogin= findViewById(R.id.buttonLogin);
+        // Inicialização das Views
+        Button buttonLogin = findViewById(R.id.buttonLogin);
+        Button buttonSignup = findViewById(R.id.buttonSignup);
+
         // Aplica o eventlistner que faz a aplicação trocar de activity
         buttonLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        // Aplica o eventlistner que faz a aplicação trocar de activity
+        buttonSignup.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(LoginActivity.this, SignupActivity.class);
                 startActivity(intent);
             }
         });

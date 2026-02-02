@@ -41,7 +41,6 @@ public class EntranceActivity extends AppCompatActivity {
         buttonToSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Toast.makeText(LoginActivity.this, "Cliquei no btn Login", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(EntranceActivity.this, SignupActivity.class);
                 startActivity(intent);
             }
@@ -53,7 +52,6 @@ public class EntranceActivity extends AppCompatActivity {
         buttonToLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Toast.makeText(LoginActivity.this, "Cliquei no btn Login", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(EntranceActivity.this, LoginActivity.class);
                 startActivity(intent);
             }

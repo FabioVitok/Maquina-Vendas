@@ -8,9 +8,9 @@ import java.util.ArrayList;
 
 public class MaquinaVendas
 {
-    public String localizacao;
-    public Utilizador user;
-    public ArrayList<Produto> produtos = new ArrayList<Produto>();
+    private String localizacao;
+    private Utilizador user;
+    private ArrayList<Produto> produtos = new ArrayList<Produto>();
 
     //Construtor da class
     public MaquinaVendas(String localizacao, Utilizador user, ArrayList<Produto> produtos)
@@ -19,7 +19,19 @@ public class MaquinaVendas
         this.user = user;
         this.produtos = produtos;
     }
-    public ArrayList<Produto> getProdutos() {
+
+    public String getLocalizacao()
+    {
+        return this.localizacao;
+    }
+
+    public Utilizador getUtilizador()
+    {
+        return this.user;
+    }
+
+    public ArrayList<Produto> getProdutos()
+    {
         return produtos;
     }
 

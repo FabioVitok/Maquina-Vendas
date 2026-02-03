@@ -3,10 +3,10 @@ package com.example.japonmarkey.models;
 import java.io.Serializable;
 
 public class Utilizador implements Serializable {
-    public String username;
-    public String email;
-    public String password;
-    public double saldo;
+    private String username;
+    private String email;
+    private String password;
+    private double saldo;
 
     //Construtor da class
     public Utilizador(String username, String email, String password) {

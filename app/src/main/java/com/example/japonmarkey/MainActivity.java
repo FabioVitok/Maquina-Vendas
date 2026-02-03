@@ -110,7 +110,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void anterior() {
         // Criar a variavel local ultimoProduto que equivale ao index do ultimo produto do arrayList
-        int ultimoProduto = mq1.produtos.size() - 1;
+        int ultimoProduto = mq1.getProdutos().size() - 1;
 
         // Verifica se o produtoAtualIndex está no primeiro elemento do arrayList
         if (produtoAtualIndex == primeiroElemento) {
@@ -118,7 +118,7 @@ public class MainActivity extends AppCompatActivity {
             produtoAtualIndex = ultimoProduto;
         } else {
             // Se ele não estiver, ele anda um produto para tras
-            produtoAtualIndex = produtoAtualIndex - 1;
+            produtoAtualIndex--;
         }
         // Atualiza o Produto que está a ser Mostrado
         MostrarProdutos();
@@ -126,7 +126,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void proximo(){
         // Criar a variavel local ultimoProduto que equivale ao index do ultimo produto do arrayList
-        int ultimoProduto = mq1.produtos.size() - 1;
+        int ultimoProduto = mq1.getProdutos().size() - 1;
 
         // Verifica se o produtoAtualIndex está no ultimo elemento do arrayList
         if (produtoAtualIndex == ultimoProduto) {
@@ -134,7 +134,7 @@ public class MainActivity extends AppCompatActivity {
             produtoAtualIndex = primeiroElemento;
         } else {
             // Se ele não estiver, ele anda um produto prà frente
-            produtoAtualIndex = produtoAtualIndex + 1;
+            produtoAtualIndex++;
         }
         // Atualiza o Produto que está a ser Mostrado
         MostrarProdutos();
@@ -146,7 +146,7 @@ public class MainActivity extends AppCompatActivity {
         CompraBottomSheet bottomSheet = new CompraBottomSheet();
 
         //Cria a variavel local produto que equivale ao produto atualmente no ecrã
-        Produto produto = mq1.produtos.get(produtoAtualIndex);
+        Produto produto = mq1.getProdutos().get(produtoAtualIndex);
 
         // Passa os dados dos produtos
         bottomSheet = CompraBottomSheet.newInstance(
@@ -160,7 +160,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onCompraRealizada(int quantidadeRecebida) {
                 // Cria a String de resultado da compra enquanto realiza a compra do produto mostrado atualmente no ecrã e com a quantidade recebida do bottomsheet
-                String resultado = mq1.comprar(mq1.produtos.get(produtoAtualIndex), quantidadeRecebida, MainActivity.this);
+                String resultado = mq1.comprar(mq1.getProdutos().get(produtoAtualIndex), quantidadeRecebida, MainActivity.this);
                 // Cria um Toast que mostra a string do resultado da compra
                 Toast.makeText(MainActivity.this, resultado, Toast.LENGTH_SHORT).show();
                 // Atualiza as informações do produto (Necessário pela mudança no stock)
@@ -177,7 +177,7 @@ public class MainActivity extends AppCompatActivity {
         int maxStock = 6;
 
         // Cria a variavel local produto para acessar ao produto atualmente mostrado no ecrã
-        Produto produto = mq1.produtos.get(produtoAtualIndex);
+        Produto produto = mq1.getProdutos().get(produtoAtualIndex);
 
         // Variaveis locais para defenir o stock atual do produto e o restock necessario para chegar ao maximo de stock
         int stockatual = produto.getStock();
@@ -199,34 +199,35 @@ public class MainActivity extends AppCompatActivity {
         Utilizador user1 = new Utilizador("Fábio", "fabio.vitoriano@icloud.com", "passwow");
         // Cria o arraylist de produtos disponiveis
         ArrayList<Produto> produtos = new ArrayList<Produto>();
-        // Cria a maquina de vendas e associa o utilizador e o arraylist
-        this.mq1 = new MaquinaVendas("Loures", user1, produtos);
 
         // Adiciona cada produto á maquina de vendas
         Doce dc1 = new Doce("Mochi de lichia", 3.60, 6, "mochi_drawable", true);
-        this.mq1.produtos.add(dc1);
+        produtos.add(dc1);
         Snack sn1 = new Snack("Jojo's Wafer", 4.60, 6, "jojowafer_drawable", true);
-        this.mq1.produtos.add(sn1);
+        produtos.add(sn1);
         Bebida bb1 = new Bebida("Soda do Goku", 2.00, 6, "gokusoda_drawable", false);
-        this.mq1.produtos.add(bb1);
+        produtos.add(bb1);
         Doce dc2 = new Doce("Pocky de Morango", 4.60, 6, "pocky_drawable", false);
-        this.mq1.produtos.add(dc2);
+        produtos.add(dc2);
         Snack sn2 = new Snack("Hello Panda Creme de Morango", 3.20, 6, "hellopanda_drawable", true);
-        this.mq1.produtos.add(sn2);
+        produtos.add(sn2);
         Bebida bb2 = new Bebida("Monster de Morango", 1.60, 6, "monstermorango_drawable", true);
-        this.mq1.produtos.add(bb2);
+        produtos.add(bb2);
         Doce dc3 = new Doce("Oreos de Morango", 6.60, 6, "strawberryoreo_drawable", false);
-        this.mq1.produtos.add(dc3);
+        produtos.add(dc3);
         Snack sn3 = new Snack("Instant Noodles Naruto", 3.40, 6, "narutonoodles_drawable", false);
-        this.mq1.produtos.add(sn3);
+        produtos.add(sn3);
         Bebida bb3 = new Bebida("Pop Soda de Morango", 1.50, 6, "strawberrysoda_drawable", true);
-        this.mq1.produtos.add(bb3);
+        produtos.add(bb3);
+
+        // Cria a maquina de vendas e associa o utilizador e o arraylist
+        this.mq1 = new MaquinaVendas("Loures", user1, produtos);
     }
 
     // Metodo Para Mostrar as informações do produto no ecrã
     public void MostrarProdutos() {
         // Cria a variavel local produto que equivale ao produto atualmente no ecrã
-        Produto produto = mq1.produtos.get(produtoAtualIndex);
+        Produto produto = mq1.getProdutos().get(produtoAtualIndex);
 
 
         // Associa a variavel da instancia ao respetivo elemento no xml
@@ -273,8 +274,8 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(MainActivity.this, UserActivity.class);
 
         // Verifica se há dados do utilizador para passar antes de os enviar
-        if (mq1 != null && mq1.user != null) {
-            Utilizador User = mq1.user;
+        if (mq1 != null && mq1.getUtilizador() != null) {
+            Utilizador User = mq1.getUtilizador();
             // Adiciona o nome do utilizador e o saldo aos dados a serem enviados
             intent.putExtra("USER_OBJECT", User);
         }
@@ -290,7 +291,7 @@ public class MainActivity extends AppCompatActivity {
             // Recebe o novo saldo
             if (data != null) {
                 updateSaldo = data.getDoubleExtra("NOVO_SALDO", 0);
-                mq1.user.setSaldo(updateSaldo);
+                mq1.getUtilizador().setSaldo(updateSaldo);
             }
 
         }
